@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo de Adivinhar o Número</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            margin-top: 40px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,.1);
+        }
+        
+        .guess-form {
+            margin-top: 20px;
+        }
+        
+        .guess-form input {
+            padding: 8px;
+            font-size: 16px;
+            width: 80px;
+        }
+        
+        .guess-form button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        @media screen and (max-width: 600px) {
+            .container {
+                max-width: 300px;
+                padding: 10px;
+            }
+            
+            .guess-form input {
+                width: 60px;
+            }
+            
+            .guess-form button {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+            
+            .result {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Adivinhar o Número</h1>
+    
+    <div class="container">
+        <p>Adivinhe o número entre 1 e 100:</p>
+        
+        <form class="guess-form" onsubmit="checkGuess(event)">
+            <input type="number" id="guess" min="1" max="100" required>
+            <button type="submit">Enviar</button>
+        </form>
+        
+        <p class="result" id="result"></p>
+    </div>
+    
+    <script>
+        function checkGuess(event) {
+            event.preventDefault();
+            
+            var guessInput = document.getElementById("guess");
+            var guess = parseInt(guessInput.value);
+            var result = document.getElementById("result");
+            
+            if (guess === randomNumber) {
+                result.textContent = "Parabéns! Você acertou!";
+                result.style.color = "green";
+            } else if (guess < randomNumber) {
+                result.textContent = "Tente um número maior.";
+                result.style.color = "red";
+            } else if (guess > randomNumber) {
+                result.textContent = "Tente um número menor.";
+                result.style.color = "red";
+            }
+            
+            guessInput.value = "";
+        }
+        
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+    </script>
+</body>
+</html>
